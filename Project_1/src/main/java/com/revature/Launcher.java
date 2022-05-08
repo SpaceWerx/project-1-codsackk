@@ -2,7 +2,7 @@ package com.revature;
 
 import java.util.Scanner;
 
-public class Driver {
+public class Launcher {
 	
 	public static void main(String[] args) {
 		Scanner scanned = new Scanner(System.in);
