@@ -1,4 +1,4 @@
-package Models;
+package com.revature;
 
 public class Reimbursement {
 	
