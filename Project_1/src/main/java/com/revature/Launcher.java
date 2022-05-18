@@ -19,9 +19,9 @@ public class Launcher {
 
 		
 			//Make the menu	run, its only 2 lines of code	
-			Menu menu = new Menu();
+			//Menu menu = new Menu();
 				
-			menu.printMenu();
+			//menu.printMenu();
 		
 		}
 	}
