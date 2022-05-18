@@ -1,7 +1,6 @@
-package com.revature;
+package com.revature.models;
 
 public class Users {
-	
 	private int id;
 	private String username;
 	private String password;

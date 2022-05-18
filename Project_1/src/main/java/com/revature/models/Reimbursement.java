@@ -1,7 +1,6 @@
-package com.revature;
+package com.revature.models;
 
 public class Reimbursement {
-	
 	private int id;
 	private int author;
 	private int resolver;
