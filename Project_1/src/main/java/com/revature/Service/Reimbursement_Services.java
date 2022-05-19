@@ -1,5 +1,7 @@
 package com.revature.Service;
 
+import com.revature.models.Reimbursement;
+
 public class Reimbursement_Services {
 
 	public void submitReimbursement(Reimbursement reimbursementToBeSubmitted) {

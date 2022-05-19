@@ -71,10 +71,10 @@ public class Menu {
 		    
 		    //
 		    case 1: 
-		      handlePortal(Role.Employee);
+		      handlePortal(Roles.EMPLOYEE);
 		      break;
 		    case 2:
-		      handlePortal(Role.Manager);
+		      handlePortal(Roles.MANAGER);
 		      break;
 		    case 0:
 		      System.out.println("\nHave a great day! Goodbye.");
