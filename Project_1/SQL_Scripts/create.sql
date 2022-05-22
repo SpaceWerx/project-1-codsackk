@@ -1,28 +1,28 @@
 CREATE TABLE reimbursements (
 	reimbursements_id serial PRIMARY KEY,
-  author INT NOT NULL REFERENCES employees (employee_id),
-  resolver INT REFERENCES employees (employee_id),
+  author INT NOT NULL REFERENCES users (user_id),
+  resolver INT REFERENCES users (user_id),
   description TEXT NOT NULL,
   type VARCHAR(250),
   status VARCHAR(250),
   amount FLOAT NOT NULL
 );
 
-CREATE TABLE employees (
-	employee_id serial PRIMARY KEY,
+CREATE TABLE users (
+	user_id serial PRIMARY KEY,
   username VARCHAR(250),
   password VARCHAR(250),
-	role VARCHAR(250)
+	role int
 );
 
-INSERT INTO employees (username, password, role)
-VALUES ('default', 'guest', 'employee'),
-	   ('cjenkins', 'cjenkins101', 'manager'),
-	   ('codytaylor', 'codytaylorjenkins', 'employee'
+INSERT INTO users (username, password, role)
+VALUES ('default', 'guest', 'EMPLOYEE'),
+	   ('cjenkins', 'cjenkins101', 'MANAGER'),
+	   ('codytaylor', 'codytaylorjenkins', 'EMPLOYEE'
      );
 
 
 SELECT * FROM reimbursements;
 
 
-SELECT * FROM employees;
+SELECT * FROM users;
