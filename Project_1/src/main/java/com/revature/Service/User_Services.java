@@ -11,7 +11,7 @@ public class User_Services {
 		return Username;
 	}
 	
-	public int getID() {
+	public int getId() {
 		return ID;
 	}
 	
