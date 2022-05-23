@@ -4,8 +4,11 @@ public class Users {
 	private int user_id;
 	private String username;
 	private String password;
-	private Roles role;
+	private int role;
 	
+	public Users(int int1, String string, String string2, int int2) {
+		// TODO Auto-generated constructor stub
+	}
 	public int getUser_id() {
 		return user_id;
 	}
@@ -24,10 +27,10 @@ public class Users {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public Roles getRole() {
+	public int getRole() {
 		return role;
 	}
-	public void setRole(Roles role) {
+	public void setRole(int role) {
 		this.role = role;
 	}
 }

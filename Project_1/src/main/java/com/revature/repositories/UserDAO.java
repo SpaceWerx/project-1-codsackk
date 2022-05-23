@@ -51,7 +51,7 @@ public class UserDAO {
 				
 				ps.setString(1, newUser.getUsername());
 				ps.setString(2, newUser.getPassword());
-				ps.setString(3, newUser.getRole());
+				ps.setInt(3, newUser.getRole());
 				
 				ps.executeUpdate();
 				
@@ -78,7 +78,7 @@ public class UserDAO {
 				List<Users> userList = new ArrayList<>();
 				
 				while(rs.next()) {
-					Users u = new User(
+					Users u = new Users(
 							rs.getInt("user_id"),
 							rs.getString("username"),
 							rs.getString("password"),
@@ -111,7 +111,7 @@ public class UserDAO {
 				List<Users> userList = new ArrayList<>();
 				
 				while(rs.next()) {
-					Users u = new User(
+					Users u = new Users(
 							rs.getInt("user_id"),
 							rs.getString("username"),
 							rs.getString("password"),
