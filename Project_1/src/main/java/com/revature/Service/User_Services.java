@@ -1,57 +1,42 @@
 package com.revature.Service;
 
+import java.sql.SQLException;
+import java.util.List;
+
+import com.revature.models.Users;
+import com.revature.repositories.UserDAO;
+
 public class User_Services {
-
-	public String Username;
-	public int ID;
-	public String all;
-	public String role;
 	
-	public String getUsername() {
-		return Username;
+	UserDAO uDAO = new UserDAO(); 
+	
+	public List<Users> getUsers() throws SQLException {
+		
+		List<Users> users =uDAO.getUsers();
+		
+		return users;
 	}
 	
-	public int getId() {
-		return ID;
+	public void insertUser(Users newUser) throws SQLException {
+		
+		uDAO.insertUser(newUser);
+		
 	}
 	
-	public String getAll() {
-		return all;
+	public List<Users> getUserById(int userId) {
+		
+		List<Users> user = uDAO.getUserById(userId);
+		
+		return user;
+		
 	}
 	
-	public String getRole() {
-		return role;
+	public List<Users> getUserByUsername(String username) {
+		
+		List<Users> user = uDAO.getUsersByUsername(username);
+		
+		return user;
+		
 	}
-
-	public int getUserByID(int author) {
-		// TODO Auto-generated method stub
-		return ID;
-	}
 	
-	//public void setUsername(String newUsername) {
-		//this.Username = newUsername;
-	//}
-	
-	
-
-	
-	//public void setID(int newID)  {
-		//this.ID = newID;
-	//}
-	
-	
-	
-	
-	
-	//public void setAll(String newAll) {
-	//	this.all = newAll;
-	//}
-	
-	
-	
-	
-	
-	//public void setRole(String newRole) {
-	//	this.role = newRole;
-	//}
 }

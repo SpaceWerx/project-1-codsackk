@@ -17,7 +17,7 @@ public class UserDAO {
 			try(Connection conn = ConnectionFactory.getConnection()){
 				ResultSet rs = null;
 				
-				String sql = "SELECT * FROM employees;";
+				String sql = "SELECT * FROM users;";
 				
 				Statement s = conn.createStatement();
 				
@@ -96,15 +96,15 @@ public class UserDAO {
 			
 		}
 
-		public List<Users> getUsersByRole(String role) {
+		public List<Users> getUsersByUsername(String username) {
 			try(Connection conn = ConnectionFactory.getConnection()){
 				ResultSet rs = null;
 				
-				String sql = "SELECT * FROM users WHERE role = ?;";
+				String sql = "SELECT * FROM users WHERE username = ?;";
 				
 				PreparedStatement ps = conn.prepareStatement(sql);
 				
-				ps.setString(1, role);
+				ps.setString(1, username);
 				
 				rs = ps.executeQuery();
 				
