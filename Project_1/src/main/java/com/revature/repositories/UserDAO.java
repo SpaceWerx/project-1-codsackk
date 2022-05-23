@@ -17,7 +17,7 @@ public class UserDAO {
 			try(Connection conn = ConnectionFactory.getConnection()){
 				ResultSet rs = null;
 				
-				String sql = "select * from employees;";
+				String sql = "SELECT * FROM employees;";
 				
 				Statement s = conn.createStatement();
 				
@@ -45,7 +45,7 @@ public class UserDAO {
 
 		public void insertUser(Users newUser) throws SQLException {
 			try(Connection conn = ConnectionFactory.getConnection()){
-				String sql = "insert into users (username, password, role) " + "values (?, ?, ?);";
+				String sql = "INSERT INTO users (username, password, role) " + "VALUES (?, ?, ?);";
 				
 				PreparedStatement ps = conn.prepareStatement(sql);
 				
@@ -67,7 +67,7 @@ public class UserDAO {
 			try(Connection conn = ConnectionFactory.getConnection()){
 				ResultSet rs = null;
 				
-				String sql = "select * from users where user_id = ?;";
+				String sql = "SELECT * FROM users WHERE user_id = ?;";
 				
 				PreparedStatement ps = conn.prepareStatement(sql);
 				
@@ -100,7 +100,7 @@ public class UserDAO {
 			try(Connection conn = ConnectionFactory.getConnection()){
 				ResultSet rs = null;
 				
-				String sql = "select * from users where role = ?;";
+				String sql = "SELECT * FROM users WHERE role = ?;";
 				
 				PreparedStatement ps = conn.prepareStatement(sql);
 				
