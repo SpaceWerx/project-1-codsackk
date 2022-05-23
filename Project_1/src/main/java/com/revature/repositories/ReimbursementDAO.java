@@ -10,6 +10,7 @@ import java.util.List;
 
 import com.revature.models.Reimbursement;
 import com.revature.models.Status;
+import com.revature.models.Type;
 import com.revature.utilities.ConnectionFactory;
 
 
@@ -26,9 +27,9 @@ public class ReimbursementDAO {
 			
 			ps.setInt(1, reimbursementToBeSubmitted.getAuthor());
 			ps.setString(2, reimbursementToBeSubmitted.getDescription());
-			ps.setInt(3, reimbursementToBeSubmitted.getType().name());
+			ps.setInt(3, reimbursementToBeSubmitted.getType().name();
 			ps.setInt(4, reimbursementToBeSubmitted.getStatus().name());
-			ps.setInt(5, reimbursementToBeSubmitted.getAmount());
+			ps.setFloat(5, reimbursementToBeSubmitted.getAmount());
 			
 			ResultSet rs;
 			
@@ -66,7 +67,7 @@ public class ReimbursementDAO {
 						rs.getString("description"),
 						Type.valueOf(rs.getString("type")),
 						Status.valueOf(rs.getString("status")),
-						rs.getDouble("amount")
+						rs.getFloat("amount")
 						
 						));
 						
@@ -105,7 +106,7 @@ public class ReimbursementDAO {
 						rs.getString("description"),
 						Type.valueOf(rs.getString("type")),
 						Status.valueOf(rs.getString("status")),
-						rs.getDouble("amount")
+						rs.getFloat("amount")
 						
 						));
 						
@@ -142,7 +143,7 @@ public class ReimbursementDAO {
 						rs.getString("description"),
 						Type.valueOf(rs.getString("type")),
 						Status.valueOf(rs.getString("status")),
-						rs.getDouble("amount")
+						rs.getFloat("amount")
 						);
 						
 			}
@@ -180,7 +181,7 @@ public class ReimbursementDAO {
 						rs.getString("description"),
 						Type.valueOf(rs.getString("type")),
 						Status.valueOf(rs.getString("status")),
-						rs.getDouble("amount")
+						rs.getFloat("amount")
 						));
 						
 			}

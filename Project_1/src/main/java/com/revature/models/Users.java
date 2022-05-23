@@ -9,7 +9,7 @@ public class Users {
 	public Users(int int1, String string, String string2, int int2) {
 		// TODO Auto-generated constructor stub
 	}
-	public int getUser_id() {
+	public int getUserById() {
 		return user_id;
 	}
 	public void setUser_id(int user_id) {

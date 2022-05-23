@@ -22,6 +22,11 @@ public class User_Services {
 	public String getRole() {
 		return role;
 	}
+
+	public int getUserByID(int author) {
+		// TODO Auto-generated method stub
+		return ID;
+	}
 	
 	//public void setUsername(String newUsername) {
 		//this.Username = newUsername;

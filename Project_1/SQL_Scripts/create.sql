@@ -5,7 +5,7 @@ CREATE TABLE reimbursements (
   description TEXT NOT NULL,
   type VARCHAR(250),
   status VARCHAR(250),
-  amount FLOAT NOT NULL
+  amount DOUBLE NOT NULL
 );
 
 CREATE TABLE users (
