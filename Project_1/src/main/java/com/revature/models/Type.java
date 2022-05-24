@@ -5,4 +5,7 @@ public enum Type {
 	TRAVEL,
 	FOOD,
 	OTHER;
+	
+
 }
+

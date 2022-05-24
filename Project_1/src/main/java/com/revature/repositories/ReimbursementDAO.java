@@ -14,6 +14,7 @@ import com.revature.models.Type;
 import com.revature.utilities.ConnectionFactory;
 
 
+
 public class ReimbursementDAO {
 	
 	public int create(Reimbursement reimbursementToBeSubmitted) {
@@ -27,8 +28,8 @@ public class ReimbursementDAO {
 			
 			ps.setInt(1, reimbursementToBeSubmitted.getAuthor());
 			ps.setString(2, reimbursementToBeSubmitted.getDescription());
-			ps.setInt(3, reimbursementToBeSubmitted.getType().name();
-			ps.setInt(4, reimbursementToBeSubmitted.getStatus().name());
+			ps.setObject(3, reimbursementToBeSubmitted.getType().name());
+			ps.setObject(4, reimbursementToBeSubmitted.getStatus().name());
 			ps.setFloat(5, reimbursementToBeSubmitted.getAmount());
 			
 			ResultSet rs;
@@ -203,13 +204,13 @@ public class ReimbursementDAO {
 			
 			String sql = "UPDATE reimbursements SET resolver = ?, status = ?::status WHERE id = ?";
 			
-			PreparedStatement preparedStatement = conn.prepareStatement(sql);
+			PreparedStatement ps = conn.prepareStatement(sql);
 			
-			preparedStatement.setInt(1, unprocessedReimbursement.getResolver());
-			preparedStatement.setObject(2, unprocessedReimbursement.getStatus().name());
-			preparedStatement.setInt(3, unprocessedReimbursement.getId());
+			ps.setInt(1, unprocessedReimbursement.getResolver());
+			ps.setObject(2, unprocessedReimbursement.getStatus().name());
+			ps.setInt(3, unprocessedReimbursement.getReimbursementsId());
 			
-			preparedStatement.executeUpdate();
+			ps.executeUpdate();
 			
 			System.out.println("Reimbursement Successfully Updated!");
 			

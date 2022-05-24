@@ -8,17 +8,18 @@ import com.revature.models.Roles;
 import com.revature.models.Status;
 import com.revature.models.Users;
 import com.revature.repositories.ReimbursementDAO;
+import com.revature.Service.User_Services;
 
 public class Reimbursement_Services {
 
 	ReimbursementDAO reimbursementDAO = new ReimbursementDAO();
 	User_Services userService = new User_Services();
 	
-	public void submitReimbursement(Reimbursement reimbursementToBeSubmitted) {
+	public int submitReimbursement(Reimbursement reimbursementToBeSubmitted) {
 		
 		
 		
-		Users employee = userService.getUserByID(reimbursementToBeSubmitted.getAuthor());
+		List<Users> employee = userService.getUserById(reimbursementToBeSubmitted.getAuthor());
 		
 		if(employee.getRole() != Roles.EMPLOYEE) {
 			
@@ -40,7 +41,7 @@ public class Reimbursement_Services {
 //		reimbursements.add(reimbursementToBeSubmitted);
 	}
 	
-	public void update(Reimbursement unprocessedReimbursement, int resolverId, Status updatedStatus) {
+	public Reimbursement update(Reimbursement unprocessedReimbursement, int resolverId, Status updatedStatus) {
 		
 		Users manager = userService.getUserById(resolverId);
 		
@@ -70,7 +71,6 @@ public class Reimbursement_Services {
 //			}
 //		}
 //		throw new RuntimeException("There was an error processing this reimburesment, please try again.");
-	}
 	
 	public Reimbursement getReimbursementById(int id) {
 		return reimbursementDAO.getReimbursementById(id);

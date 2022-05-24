@@ -43,9 +43,9 @@ public class Launcher {
 			
 			app.post("/user", uc.insertUsersHandler);
 			
-			app.get("/user", uc.getUserByUsernameHandler);
+			//app.get("/user", uc.getUserByUsernameHandler);
 			
-			app.get("/user", uc.getUserByIdHandler);
+			//app.get("/user", uc.getUserByIdHandler);
 			
 			app.post("/login", ac.loginHandler);
 		}

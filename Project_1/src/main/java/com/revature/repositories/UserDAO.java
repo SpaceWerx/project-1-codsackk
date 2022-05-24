@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
+import com.revature.models.Roles;
 import com.revature.models.Users;
 import com.revature.utilities.ConnectionFactory;
 
@@ -30,7 +30,7 @@ public class UserDAO {
 							rs.getInt("user_id"),
 							rs.getString("username"),
 							rs.getString("password"),
-							rs.getInt("role")				
+							Roles.valueOf(rs.getString("role"))				
 							);
 					userList.add(u);
 				}
@@ -51,7 +51,7 @@ public class UserDAO {
 				
 				ps.setString(1, newUser.getUsername());
 				ps.setString(2, newUser.getPassword());
-				ps.setInt(3, newUser.getRole());
+				ps.setObject(3, newUser.getRole().name());
 				
 				ps.executeUpdate();
 				
@@ -82,7 +82,7 @@ public class UserDAO {
 							rs.getInt("user_id"),
 							rs.getString("username"),
 							rs.getString("password"),
-							rs.getInt("role")				
+							Roles.valueOf(rs.getString("role"))				
 							);
 					userList.add(u);
 				}
@@ -115,7 +115,7 @@ public class UserDAO {
 							rs.getInt("user_id"),
 							rs.getString("username"),
 							rs.getString("password"),
-							rs.getInt("role")				
+							Roles.valueOf(rs.getString("role"))				
 							);
 					userList.add(u);
 				}
