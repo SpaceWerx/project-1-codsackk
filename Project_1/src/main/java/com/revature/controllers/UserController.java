@@ -41,4 +41,32 @@ public class UserController {
 		
 	};
 
+	public Handler getUserByUsernameHandler = (ctx) -> {
+		
+		List<Users> username = us.getUserByUsername();
+		
+		Gson gson = new Gson();
+		
+		String JSONObject = gson.toJson(username);
+		
+		ctx.result(JSONObject);
+		ctx.status(200);
+		
+		
+	};
+
+	public Handler getUserByIdHandler = (ctx) -> {
+		
+		List<Users> userId = us.getUserById();
+		
+		Gson gson = new Gson();
+		
+		String JSONObject = gson.toJson(userId);
+		
+		ctx.result(JSONObject);
+		ctx.status(200);
+		
+		
+	};
+
 }
