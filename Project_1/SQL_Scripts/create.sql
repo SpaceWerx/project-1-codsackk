@@ -12,7 +12,7 @@ CREATE TABLE users (
 	user_id serial PRIMARY KEY,
   username VARCHAR(250),
   password VARCHAR(250),
-	role int
+	role VARCHAR(250)
 );
 
 INSERT INTO users (username, password, role)
