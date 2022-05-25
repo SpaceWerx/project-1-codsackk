@@ -26,7 +26,13 @@ bg.style.height='100%';
 const btn2 = document.getElementById('btn2');
 
 btn2.style.marginLeft='100px';
+document.getElementById("btn2").onclick = function() {
+    location.href = "register.html";
+}
 
+const btn3 = document.getElementById('btn3');
+
+btn3.style.marginLeft='110px';
 
 // const logo = document.getElementById('logo');
 
