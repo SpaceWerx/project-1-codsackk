@@ -8,7 +8,7 @@ import com.revature.repositories.UserDAO;
 
 public class User_Services {
 	
-	UserDAO uDAO = new UserDAO(); 
+	UserDAO uDAO = new UserDAO();
 	
 	public List<Users> getUsers() throws SQLException {
 		
@@ -37,6 +37,18 @@ public class User_Services {
 		
 		return user;
 		
+	}
+	
+	public boolean userExistsById(int id) throws SQLException {
+		for(Users users : uDAO.getUsers()) {
+			if(users.getUserById()==id) {
+				System.out.println("this ID exists!");
+				break;
+			}
+		}
+		
+		System.out.println("this ID does not exist");
+		return false;
 	}
 	
 }

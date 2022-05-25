@@ -121,7 +121,7 @@ public class ReimbursementController {
 			
 			Status status = Status.valueOf(statusParam);
 			
-			if(status == status.PENDING) {
+			if(status == Status.PENDING) {
 				
 				ctx.status(HttpCode.OK);
 				ctx.json(reimbursementService.getPendingReimbursements());
@@ -193,7 +193,7 @@ public class ReimbursementController {
 				
 				int id = Integer.parseInt(idParam);
 				
-				if(userService.checkUserExistsById) {
+				if(userService.userExistsById(id)) {
 					
 					ctx.status(HttpCode.OK);
 					ctx.result("Unable to retrieve reimbursements, current user is not in the database!");
