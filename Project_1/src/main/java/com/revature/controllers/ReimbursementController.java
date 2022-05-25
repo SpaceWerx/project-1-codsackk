@@ -1,6 +1,7 @@
 package com.revature.controllers;
 
 import com.revature.Service.Reimbursement_Services;
+import com.revature.Service.User_Services;
 import com.revature.models.Reimbursement;
 import com.revature.models.Status;
 
@@ -11,6 +12,7 @@ public class ReimbursementController {
 	
 	ObjectMapper objectMapper = new ObjectMapper();
 	Reimbursement_Services reimbursementService = new Reimbursement_Services();
+	User_Services userService = new User_Services();
 	
 	public void handleSubmit(Context ctx) {
 		
@@ -98,8 +100,132 @@ public class ReimbursementController {
 		ctx.status(HttpCode.FORBIDDEN);
 		ctx.result("Missing current user header with ID");
 			
+		}
 	}
+
+	public void handleGetReimbursements(Context ctx) {
+		
+		if(ctx.queryParam("author") != null) {
+			handleGetReimbursementsByAuthor(ctx);
+		} else if (ctx.queryParam("status") != null) {
+			handleGetReimbursementsByStatus(ctx);
+		}
+		
 	}
+	
+	public void handleGetReimbursementsByStatus(Context ctx) {
+		
+		try {
+			
+			String statusParam = ctx.queryParam("status");
+			
+			Status status = Status.valueOf(statusParam);
+			
+			if(status == status.PENDING) {
+				
+				ctx.status(HttpCode.OK);
+				ctx.json(reimbursementService.getPendingReimbursements());
+				
+			} else {
+				
+				ctx.status(HttpCode.OK);
+				ctx.json(reimbursementService.getResolvedReimbursements());
+			}
+			
+		} catch(Exception e) {
+			
+			ctx.status(HttpCode.INTERNAL_SERVER_ERROR);
+			
+			if(!e.getMessage().isEmpty()) {
+				ctx.result(e.getMessage());
+			}
+			
+			e.printStackTrace();
+			
+			
+		}
+		
 	}
+	
+	public void handleGetReimbursementsById(Context ctx) {
+		
+		try {
+			
+			String idParam = ctx.pathParam("id");
+			
+			int id = Integer.parseInt(idParam);
+			
+			Reimbursement reimbursement = reimbursementService.getReimbursementById(id);
+			
+			if(reimbursement != null) {
+				
+				ctx.status(HttpCode.OK);
+				ctx.json(reimbursement);
+				
+			} else {
+				
+				ctx.status(HttpCode.BAD_REQUEST);
+				ctx.result("Could not retrieve the reimbursement!");
+			}
+			
+		} catch(Exception e) {
+			
+			ctx.status(HttpCode.INTERNAL_SERVER_ERROR);
+			
+			if(!e.getMessage().isEmpty()) {
+				ctx.result(e.getMessage());
+			}
+			
+			e.printStackTrace();
+			
+			
+		}
+		
+	}
+	
+	public void handleGetReimbursementsByAuthor(Context ctx) {
+		
+		try {
+			
+			String idParam = ctx.queryParam("author");
+			
+			if(idParam != null) {
+				
+				int id = Integer.parseInt(idParam);
+				
+				if(userService.checkUserExistsById) {
+					
+					ctx.status(HttpCode.OK);
+					ctx.result("Unable to retrieve reimbursements, current user is not in the database!");
+					
+				} else {
+					
+					ctx.status(HttpCode.NOT_FOUND);
+					ctx.json(reimbursementService.getResolvedReimbursements());
+				}
+				
+			} else {
+				
+				ctx.status(HttpCode.BAD_REQUEST);
+				ctx.result("Missing Current User Header!");
+				
+			}
+			
+		} catch(Exception e) {
+			
+			ctx.status(HttpCode.INTERNAL_SERVER_ERROR);
+			
+			if(!e.getMessage().isEmpty()) {
+				ctx.result(e.getMessage());
+			}
+			
+			e.printStackTrace();
+			
+			
+		}
+		
+	}
+
+}
 	
 

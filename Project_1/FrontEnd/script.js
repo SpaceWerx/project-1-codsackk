@@ -2,7 +2,7 @@ const cont = document.getElementById('container');
 
 cont.style.backgroundColor = 'white';
 cont.style.position = 'absolute';
-cont.style.top ='25%';
+cont.style.top ='15%';
 cont.style.left='35%';
 cont.style.border='solid white';
 cont.style.padding='100px';
@@ -12,7 +12,7 @@ cont.style.zIndex='2';
 
 const btn = document.getElementById('btn');
 
-btn.style.marginLeft='75px';
+btn.style.marginLeft='110px';
 btn.style.marginTop='25px';
 
 const bg = document.getElementById('bg');
@@ -22,6 +22,11 @@ bg.style.top='0';
 bg.style.left='0';
 bg.style.width='100%';
 bg.style.height='100%';
+
+const btn2 = document.getElementById('btn2');
+
+btn2.style.marginLeft='100px';
+
 
 // const logo = document.getElementById('logo');
 

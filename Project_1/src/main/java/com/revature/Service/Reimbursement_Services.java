@@ -19,7 +19,7 @@ public class Reimbursement_Services {
 		
 		
 		
-		List<Users> employee = userService.getUserById(reimbursementToBeSubmitted.getAuthor());
+		Users employee = userService.getUserById(reimbursementToBeSubmitted.getAuthor());
 		
 		if(employee.getRole() != Roles.EMPLOYEE) {
 			
