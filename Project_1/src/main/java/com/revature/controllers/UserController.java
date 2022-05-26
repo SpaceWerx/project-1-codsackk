@@ -41,6 +41,14 @@ public class UserController {
 		
 	};
 
+	public Handler getUserByUsernameHandler = (ctz -> {
+		
+		
+		
+	});
+
+	
+
 //	public Handler getUserByUsernameHandler = (ctx) -> {
 //		
 //		List<Users> username = us.getUserByUsername();
@@ -54,7 +62,9 @@ public class UserController {
 //		
 //		
 //	};
-//
+//	
+	public Handler getUserByIdHandler;
+	
 //	public Handler getUserByIdHandler = (ctx) -> {
 //		
 //		List<Users> userId = us.getUserById();

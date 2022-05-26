@@ -51,7 +51,7 @@ public class UserDAO {
 				
 				ps.setString(1, newUser.getUsername());
 				ps.setString(2, newUser.getPassword());
-				ps.setObject(3, newUser.getRole().name());
+				ps.setString(3, newUser.getRole().name());
 				
 				ps.executeUpdate();
 				

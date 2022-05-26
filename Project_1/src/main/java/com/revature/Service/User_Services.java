@@ -23,11 +23,19 @@ public class User_Services {
 		
 	}
 	
-	public List<Users> getUserById(int userId) {
+	public Users getUserById(int userId) {
 		
-		List<Users> user = uDAO.getUserById(userId);
+		List<Users> userList = uDAO.getUserById(userId);
+		try {
+			Users user = userList.get(0);
+			return user;
+		} catch (IndexOutOfBoundsException e) {
+			System.out.println("no user found!");
+			e.printStackTrace();
+			return null;
+		}
 		
-		return user;
+		
 		
 	}
 	
