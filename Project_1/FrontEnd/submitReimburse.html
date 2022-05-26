@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+            <title>Employee Portal</title>
+            <link rel="icon" type="image/x-icon" href="images/favicon.png">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
+            <div id="nav" class="container">
+                <img src="images/rev-logo.png" alt="revature-logo">
+                <div class="d-flex">
+                    <button class="btn btn-outline-success">
+                        <a id="logout-anchor" href="index.html">
+                            Logout
+                        </a>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div id="main">
+        <div id="bg">
+            <img src="images/main-background.jpg" alt="tech background2">
+        </div>
+        <div id="display">
+            <h2 id="display-title">Reimbursement Submission Form</h2>
+            <div class="form-container">
+                <form id="display-form">
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="typeInput">Type</label>
+                        <select class="form-select" id="typeInput">
+                            <option selected>Choose...</option>
+                            <option value="1">Lodging</option>
+                            <option value="2">Travel</option>
+                            <option value="3">Food</option>
+                            <option value="4">Other</option>
+                        </select>
+                    </div>
+                        <label class="form-label" for="description">Description</label>
+                        <div class="input-group">
+                            <textarea class="form-control" id="description" placeholder="Explain the reason for your request..." aria-label="With textarea"></textarea>
+                        </div>
+                        <label class="form-label" for="amount">Amount</label>
+                        <div class="input-group-mb3">
+                            <span class="input-group-text">$</span>
+                            <input type="number" class="form-control" id="amount" placholder="e.g. 100.00" aria-label="Amount to the nearest dollar">
+                        </div>
+                        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                            <div class="btn-group me-2" role="group" aria-label="First group">
+                                <button id="back-button" class="btn btn-outline-danger">
+                                    <a id="back-anchor" href="employee.html">
+                                        Back
+                                    </a>
+                                </button>
+                            </div>
+                            <div class="btn-group me-2" role="group" aria-label="Second group">
+                                <button type="submit" id="submit-button" class="btn btn-outline-primary">Submit</button>
+                            </div>
+                        </div>
+                        <div id="message" hidden>Something went wrong</div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--<script src="script.js"></script>-->
+    <script src="submit.js"></script>
+</body>
+</html>

@@ -17,6 +17,9 @@ const btn = document.getElementById('btn');
 
 btn.style.marginLeft='110px';
 btn.style.marginTop='25px';
+document.getElementById("btn").onclick = function() {
+    location.href = "employee.html";
+}
 
 const bg = document.getElementById('bg');
 
@@ -37,6 +40,12 @@ const btn3 = document.getElementById('btn3');
 
 btn3.style.marginLeft='110px';
 
+
+const submit = document.getElementById('submit-anchor');
+
+document.getElementById("submit-anchor").onclick = function() {
+    location.href = "submitReimburse.html";
+}
 // const logo = document.getElementById('logo');
 
 // logo.style.maxHeight="150px";
