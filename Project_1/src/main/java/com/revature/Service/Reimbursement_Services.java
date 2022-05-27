@@ -132,6 +132,13 @@ public class Reimbursement_Services {
 		List<Reimbursement> reimbursements = reimbursementDAO.getAllReimbursements();
 		
 		return reimbursements;
-	}	
+	}
+	
+	public static Reimbursement update(Reimbursement unprocessedReimbursement) {	
+		
+		reimbursementDAO.update(unprocessedReimbursement);
+
+		return unprocessedReimbursement;
+	}
 }
 

@@ -3,12 +3,13 @@ package com.revature.Service;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.revature.models.Roles;
 import com.revature.models.Users;
 import com.revature.repositories.UserDAO;
 
 public class User_Services {
 	
-	UserDAO uDAO = new UserDAO();
+	static UserDAO uDAO = new UserDAO();
 	
 	public List<Users> getUsers() throws SQLException {
 		
@@ -39,11 +40,10 @@ public class User_Services {
 		
 	}
 	
-	public List<Users> getUserByUsername(String username) {
+	public static Users getUserByUsername(String username) {
 		
-		List<Users> user = uDAO.getUsersByUsername(username);
+		return UserDAO.getUsersByUsername(username);
 		
-		return user;
 		
 	}
 	
@@ -57,6 +57,11 @@ public class User_Services {
 		
 		System.out.println("this ID does not exist");
 		return false;
+	}
+
+	public List<Users> getUserByRole(Roles role) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

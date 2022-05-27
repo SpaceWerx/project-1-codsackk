@@ -204,7 +204,7 @@ public class ReimbursementDAO {
 		
 		try(Connection conn = ConnectionFactory.getConnection()) {
 			
-			String sql = "UPDATE reimbursements SET resolver = ?, status = ?::status WHERE id = ?";
+			String sql = "UPDATE reimbursements SET resolver = ?, status = ?::status WHERE reimbursements_id = ?;";
 			
 			PreparedStatement ps = conn.prepareStatement(sql);
 			

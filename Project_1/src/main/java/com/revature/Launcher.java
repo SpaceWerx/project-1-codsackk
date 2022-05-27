@@ -40,20 +40,23 @@ public class Launcher {
 				}
 					).start(3000);
 		
-			app.get("/user", uc.getUsersHandler);
-			
-			app.post("/user", uc.insertUsersHandler);
-			
 			app.post("/login", ac.loginHandler);
 			
 			app.post("/register", ac.registerHandler);
+			
+			app.get("/user", uc.getUsersHandler);
+			
+			app.post("/user", uc.insertUsersHandler);
 			
 			app.get("/reimbursement", rc.getReimbursementsHandler);
 			
 			app.post("/reimbursement", rc.submitReimbursementsHandler);
 			
-			//app.put("/process", rc.handleProcess);
+			app.put("/approved", rc.handleApproved);
+			
+			app.put("/denied", rc.handleDenied);
 		}
+
 	}
 
 

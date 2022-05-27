@@ -97,7 +97,7 @@ public class UserDAO {
 			
 		}
 
-		public static List<Users> getUsersByUsername(String username) {
+		public static Users getUsersByUsername(String username) {
 			try(Connection conn = ConnectionFactory.getConnection()){
 				ResultSet rs = null;
 				
@@ -109,23 +109,24 @@ public class UserDAO {
 				
 				rs = ps.executeQuery();
 				
-				List<Users> userList = new ArrayList<>();
+				
 				
 				while(rs.next()) {
-					Users u = new Users(
+					return new Users(
 							rs.getInt("user_id"),
 							rs.getString("username"),
 							rs.getString("password"),
 							Roles.valueOf(rs.getString("role"))				
 							);
-					userList.add(u);
+					
 				}
-				return userList;				
+							
 			}
 			catch(SQLException u) {
 				System.out.println("Something went wrong");
 				u.printStackTrace();
-				return null;
+				
 			}
+			return null;
 		}
 	}
