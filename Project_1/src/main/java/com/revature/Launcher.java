@@ -2,7 +2,7 @@ package com.revature;
 
 import com.revature.controllers.UserController;
 import com.revature.controllers.AuthenticationController;
-
+import com.revature.controllers.ReimbursementController;
 //import java.util.Scanner;
 import com.revature.utilities.ConnectionFactory;
 
@@ -18,6 +18,7 @@ public class Launcher {
 			
 			UserController uc = new UserController();
 			AuthenticationController ac = new AuthenticationController();
+			ReimbursementController rc = new ReimbursementController();
 			
 			//Testing Database Connectivity - just testing whether our Connection (from ConnectionFactory) is successful
 			try(Connection conn = ConnectionFactory.getConnection()){
@@ -43,11 +44,15 @@ public class Launcher {
 			
 			app.post("/user", uc.insertUsersHandler);
 			
-			app.get("/user", uc.getUserByUsernameHandler);
-			
-			app.get("/user", uc.getUserByIdHandler);
-			
 			app.post("/login", ac.loginHandler);
+			
+			app.post("/register", ac.registerHandler);
+			
+			app.get("/reimbursement", rc.getReimbursementsHandler);
+			
+			app.post("/reimbursement", rc.submitReimbursementsHandler);
+			
+			//app.put("/process", rc.handleProcess);
 		}
 	}
 

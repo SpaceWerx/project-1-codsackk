@@ -43,7 +43,7 @@ public class UserDAO {
 			}
 		}
 
-		public void insertUser(Users newUser) throws SQLException {
+		public static int insertUser(Users newUser) throws SQLException {
 			try(Connection conn = ConnectionFactory.getConnection()){
 				String sql = "INSERT INTO users (username, password, role) " + "VALUES (?, ?, ?);";
 				
@@ -61,6 +61,7 @@ public class UserDAO {
 				System.out.println("Something went wrong");
 				u.printStackTrace();
 			}
+			return 0;
 		}
 
 		public List<Users> getUserById(int userId) {
@@ -96,7 +97,7 @@ public class UserDAO {
 			
 		}
 
-		public List<Users> getUsersByUsername(String username) {
+		public static List<Users> getUsersByUsername(String username) {
 			try(Connection conn = ConnectionFactory.getConnection()){
 				ResultSet rs = null;
 				

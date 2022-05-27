@@ -1,5 +1,6 @@
 package com.revature.Service;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,10 +13,10 @@ import com.revature.repositories.ReimbursementDAO;
 
 public class Reimbursement_Services {
 
-	ReimbursementDAO reimbursementDAO = new ReimbursementDAO();
-	User_Services userService = new User_Services();
+	static ReimbursementDAO reimbursementDAO = new ReimbursementDAO();
+	static User_Services userService = new User_Services();
 	
-	public int submitReimbursement(Reimbursement reimbursementToBeSubmitted) {
+	public static int submitReimbursement(Reimbursement reimbursementToBeSubmitted) {
 		
 		
 		
@@ -124,6 +125,13 @@ public class Reimbursement_Services {
 //		}
 //	
 //		return userReimbursements; 
+	}
+
+	public List<Reimbursement> getAllReimbursements() throws SQLException{
+		
+		List<Reimbursement> reimbursements = reimbursementDAO.getAllReimbursements();
+		
+		return reimbursements;
 	}	
 }
 

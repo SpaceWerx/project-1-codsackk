@@ -4,8 +4,13 @@ import com.revature.Service.Reimbursement_Services;
 import com.revature.Service.User_Services;
 import com.revature.models.Reimbursement;
 import com.revature.models.Status;
+import com.revature.repositories.ReimbursementDAO;
 
+import java.util.List;
+
+import com.google.gson.Gson;
 import io.javalin.http.Context;
+import io.javalin.http.Handler;
 import io.javalin.http.HttpCode;
 
 public class ReimbursementController {
@@ -14,39 +19,40 @@ public class ReimbursementController {
 	Reimbursement_Services reimbursementService = new Reimbursement_Services();
 	User_Services userService = new User_Services();
 	
-	public void handleSubmit(Context ctx) {
+	
+	public Handler getReimbursementsHandler = (ctx) -> {
 		
-		try {
+		List<Reimbursement> allReimbursements = ReimbursementDAO.getAllReimbursements();
+		
+		Gson gson = new Gson();
+		
+		String JSONObject = gson.toJson(allReimbursements);
+		
+		ctx.result(JSONObject);
+		ctx.status(200);
+
+	};
+	
+	public Handler submitReimbursementsHandler = (ctx) -> {
 			
-			String input = ctx.body();
+			String body =ctx.body();
+			Gson gson = new Gson();
+		
+			Reimbursement reimbursement = gson.fromJson(body, Reimbursement.class);
 			
-			Reimbursement reimbursement = objectMapper.readValue(input, Reimbursement.class);
+			int id = Reimbursement_Services.submitReimbursement(reimbursement);
 			
-			int id = reimbursementService.submitReimbursement(reimbursement);
-			
-			if(id != 0) {
-				
+			if(id !=0) {
 				ctx.status(HttpCode.CREATED);
 				ctx.result(""+id);
-				
 			} else {
-				
 				ctx.status(HttpCode.BAD_REQUEST);
 				ctx.result("Reimbursement submission was unsuccessful!");
-			}
-			
-		} catch(Exception e) {
-			
-			ctx.status(HttpCode.INTERNAL_SERVER_ERROR);
-			
-			if(!e.getMessage().isEmpty()) {
-				ctx.result(e.getMessage());
-			}
-			
-		
-			e.printStackTrace();
+				
 		}
-	}	
+			
+	};	
+	
 		
 	
 	public void handleProcess(Context ctx) {
@@ -103,15 +109,7 @@ public class ReimbursementController {
 		}
 	}
 
-	public void handleGetReimbursements(Context ctx) {
-		
-		if(ctx.queryParam("author") != null) {
-			handleGetReimbursementsByAuthor(ctx);
-		} else if (ctx.queryParam("status") != null) {
-			handleGetReimbursementsByStatus(ctx);
-		}
-		
-	}
+	
 	
 	public void handleGetReimbursementsByStatus(Context ctx) {
 		
@@ -182,50 +180,51 @@ public class ReimbursementController {
 		}
 		
 	}
-	
-	public void handleGetReimbursementsByAuthor(Context ctx) {
-		
-		try {
-			
-			String idParam = ctx.queryParam("author");
-			
-			if(idParam != null) {
-				
-				int id = Integer.parseInt(idParam);
-				
-				if(userService.userExistsById(id)) {
-					
-					ctx.status(HttpCode.OK);
-					ctx.result("Unable to retrieve reimbursements, current user is not in the database!");
-					
-				} else {
-					
-					ctx.status(HttpCode.NOT_FOUND);
-					ctx.json(reimbursementService.getResolvedReimbursements());
-				}
-				
-			} else {
-				
-				ctx.status(HttpCode.BAD_REQUEST);
-				ctx.result("Missing Current User Header!");
-				
-			}
-			
-		} catch(Exception e) {
-			
-			ctx.status(HttpCode.INTERNAL_SERVER_ERROR);
-			
-			if(!e.getMessage().isEmpty()) {
-				ctx.result(e.getMessage());
-			}
-			
-			e.printStackTrace();
-			
-			
-		}
-		
-	}
-
 }
+//	
+//	public void handleGetReimbursementsByAuthor(Context ctx) {
+//					ctx.json(reimbursementService.getResolvedReimbursements());
+//				}
+//				
+//			} else {
+//				
+//				ctx.status(HttpCode.BAD_REQUEST);
+//				ctx.result("Missing Current User Header!");
+//				
+//			}
+//			
+//		} catch(Exception e) {
+//			
+//			ctx.status(HttpCode.INTERNAL_SERVER_ERROR);
+//			
+//			
+//		try {
+//			
+//			String idParam = ctx.queryParam("author");
+//			
+//			if(idParam != null) {
+//				
+//				int id = Integer.parseInt(idParam);
+//				
+//				if(userService.userExistsById(id)) {
+//					
+//					ctx.status(HttpCode.OK);
+//					ctx.result("Unable to retrieve reimbursements, current user is not in the database!");
+//					
+//				} else {
+//					
+//					ctx.status(HttpCode.NOT_FOUND);
+//		if(!e.getMessage().isEmpty()) {
+//				ctx.result(e.getMessage());
+//			}
+//			
+//			e.printStackTrace();
+//			
+//			
+//		}
+//		
+//	}
+//
+//}
 	
 

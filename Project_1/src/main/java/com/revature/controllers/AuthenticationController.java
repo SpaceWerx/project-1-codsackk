@@ -1,26 +1,30 @@
 package com.revature.controllers;
 
+//import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.revature.Service.Auth_Service;
+import com.revature.models.Users;
 
 import io.javalin.http.Handler;
+import io.javalin.http.HttpCode;
 
 public class AuthenticationController {
 	
 Auth_Service as = new Auth_Service();
+
 	
 	public Handler loginHandler = (ctx) -> {
 		String body = ctx.body();
 		
 		Gson gson = new Gson();
 		//I recommend you make this an employee object 
-		Auth_Service log = gson.fromJson(body, Auth_Service.class);
+		Users log = gson.fromJson(body, Users.class);
 
-		if(as.login(log.getUsername(), log.getPassword()) == 1) {
+		if(Auth_Service.login(log.getUsername(), log.getPassword()) == 1) {
 			ctx.status(201);
 			ctx.result("Login Sucessful!");
 		}
-		else if(as.login(log.getUsername(), log.getPassword()) == 2) {
+		else if(Auth_Service.login(log.getUsername(), log.getPassword()) == 2) {
 			ctx.status(202);
 			ctx.result("Login Sucessful!");
 		}
@@ -30,4 +34,33 @@ Auth_Service as = new Auth_Service();
 		}
 	};
 	
+	ObjectMapper Mapper = new ObjectMapper();
+
+	public Handler registerHandler = (ctx) -> {
+		
+		try {
+			
+			String input = ctx.body();
+			
+			Users user = Mapper.readValue(input, Users.class);
+			
+			int id = Auth_Service.register(user);
+			
+			if(id == 0) {
+				
+				ctx.status(HttpCode.INTERNAL_SERVER_ERROR);
+				ctx.result("Registration unsuccessful.");
+			}
+			
+		} catch (Exception e) {
+			
+			ctx.status(HttpCode.INTERNAL_SERVER_ERROR);
+			
+			if(!e.getMessage().isEmpty()) {
+				ctx.result(e.getMessage());
+			}
+			
+			e.printStackTrace();
+		}
+	};	
 }

@@ -48,3 +48,13 @@ function tableRenderFailed(xhr) {
     messageDiv.hidden = false; 
     messageDiv.innerText = xhr.responseText;
 }
+
+const main = document.getElementById("main");
+
+main.style.height = "auto";
+
+const navbar = document.getElementsByClassName("navbar");
+
+navbar.style.paddingTop = "10px";
+navbar.style.paddingBottom = "10px";
+navbar.style.backgroundColor = "white";

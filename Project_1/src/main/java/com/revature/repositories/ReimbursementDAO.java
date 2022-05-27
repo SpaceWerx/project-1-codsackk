@@ -22,7 +22,7 @@ public class ReimbursementDAO {
 		try(Connection conn = ConnectionFactory.getConnection()) {
 			
 			String sql = "INSERT INTO reimbursements (author, description, type, status, amount)" + 
-						"VALUES (?, ?, ?::type, ?::status, ?)" + "RETURNING reimbursements_id";
+						"VALUES (?, ?, ?::type, ?::status, ?)" + "RETURNING reimbursements_id;";
 			
 			PreparedStatement ps = conn.prepareStatement(sql);
 			
@@ -49,19 +49,21 @@ public class ReimbursementDAO {
 	return 0;
 	}
 	
-	public List<Reimbursement> getAllReimbursements() {
+	public static List<Reimbursement> getAllReimbursements() throws SQLException {
 		
 		try(Connection conn = ConnectionFactory.getConnection()) {
-			List<Reimbursement> reimbursements = new ArrayList<>();
+			ResultSet rs = null;
 			
-			String sql = "SELECT * FROM reimbursements";
+			String sql = "SELECT * FROM reimbursements;";
 			
 			Statement s = conn.createStatement();
 			
-			ResultSet rs = s.executeQuery(sql);
+			rs = s.executeQuery(sql);
+			
+			List<Reimbursement> reimbursements = new ArrayList<>();
 			
 			while(rs.next()) {
-				reimbursements.add(new Reimbursement(
+				Reimbursement r = new Reimbursement(
 						rs.getInt("reimbursements_id"),
 						rs.getInt("author"),
 						rs.getInt("resolver"),
@@ -69,9 +71,8 @@ public class ReimbursementDAO {
 						Type.valueOf(rs.getString("type")),
 						Status.valueOf(rs.getString("status")),
 						rs.getFloat("amount")
-						
-						));
-						
+						);
+					reimbursements.add(r);
 			}
 			
 			return reimbursements;
@@ -79,9 +80,10 @@ public class ReimbursementDAO {
 		} catch (SQLException e) {
 			System.out.println("Something went wrong with the database!");
 			e.printStackTrace();
+			return null;
 		}
 		
-		return null;
+		
 	}
 
 	public List<Reimbursement> getByStatus(Status status) {

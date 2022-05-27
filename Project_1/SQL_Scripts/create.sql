@@ -5,7 +5,7 @@ CREATE TABLE reimbursements (
   description TEXT NOT NULL,
   type VARCHAR(250),
   status VARCHAR(250),
-  amount DOUBLE NOT NULL
+  amount FLOAT NOT NULL
 );
 
 CREATE TABLE users (
@@ -26,3 +26,7 @@ SELECT * FROM reimbursements;
 
 
 SELECT * FROM users;
+
+create type role as ENUM ('Employee', 'Manager');
+create type type as ENUM ('Lodging', 'Travel', 'Food','Other');
+create type status as ENUM ('Pending', 'Approved', 'Denied');
